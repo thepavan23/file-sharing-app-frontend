@@ -14,7 +14,7 @@ const Dashboard = () => {
     const fetchFiles = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("${API_URL}/api/files", {
+        const response = await axios.get(`${API_URL}/api/files`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setFiles(response.data.files);

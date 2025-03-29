@@ -14,7 +14,7 @@ const Shared = () => {
     const fetchSharedFiles = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("${API_URL}/api/files/shared", {
+        const response = await axios.get(`${API_URL}/api/files/shared`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setSharedFiles(response.data.files || []); // Ensure we get an array
@@ -30,7 +30,7 @@ const Shared = () => {
   const handleDelete = async (file) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete("${API_URL}/api/bin/move", {
+      await axios.delete(`${API_URL}/api/bin/move`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { fileId: file._id },
       });
@@ -80,7 +80,7 @@ const Shared = () => {
       if (!email) return;
       const token = localStorage.getItem("token");
       await axios.post(
-        "${API_URL}/api/files/share",
+        `${API_URL}/api/files/share`,
         { fileId: file._id, recipientEmail: email },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -93,7 +93,7 @@ const Shared = () => {
   const handleFavorite = async (file) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.post("${API_URL}/api/files/favourite", { fileId: file._id }, {
+      await axios.post(`${API_URL}/api/files/favourite`, { fileId: file._id }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("File added to favorites!");

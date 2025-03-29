@@ -22,7 +22,7 @@ const Categories = () => {
           return;
         }
 
-        const response = await axios.get("${API_URL}/api/files/categories", {
+        const response = await axios.get(`${API_URL}/api/files/categories`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -41,7 +41,7 @@ const Categories = () => {
     const fetchFilesByCategory = async () => {
       try {
         const token = localStorage.getItem("token");
-        let url = "${API_URL}/api/files/user-files";
+        let url = `${API_URL}/api/files/user-files`;
 
         if (selectedCategory !== "All") {
           const categoryMapping = {
@@ -75,7 +75,7 @@ const Categories = () => {
   const handleDelete = async (file) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete("${API_URL}/api/bin/move", {
+      await axios.delete(`${API_URL}/api/bin/move`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { fileId: file._id },
       });
@@ -126,7 +126,7 @@ const Categories = () => {
       if (!email) return;
       const token = localStorage.getItem("token");
       await axios.post(
-        "${API_URL}/api/files/share",
+        `${API_URL}/api/files/share`,
         { fileId: file._id, recipientEmail: email },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -139,7 +139,7 @@ const Categories = () => {
   const handleFavorite = async (file) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.post("${API_URL}/api/files/favourite", { fileId: file._id }, {
+      await axios.post(`${API_URL}/api/files/favourite`, { fileId: file._id }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("File added to favorites!");
