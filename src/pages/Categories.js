@@ -3,6 +3,10 @@ import axios from "axios";
 import FileCard from "../components/FileCard";
 import "../styles/Categories.css";
 
+
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
+
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -18,7 +22,7 @@ const Categories = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:5000/api/files/categories", {
+        const response = await axios.get("${API_URL}/api/files/categories", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -37,7 +41,7 @@ const Categories = () => {
     const fetchFilesByCategory = async () => {
       try {
         const token = localStorage.getItem("token");
-        let url = "http://localhost:5000/api/files/user-files";
+        let url = "${API_URL}/api/files/user-files";
 
         if (selectedCategory !== "All") {
           const categoryMapping = {
@@ -48,7 +52,7 @@ const Categories = () => {
           };
 
           const categoryKey = categoryMapping[selectedCategory] || selectedCategory;
-          url = `http://localhost:5000/api/files/category/${encodeURIComponent(categoryKey)}`;
+          url = `${API_URL}/api/files/category/${encodeURIComponent(categoryKey)}`;
         }
 
         console.log("Fetching files from:", url);
@@ -71,7 +75,7 @@ const Categories = () => {
   const handleDelete = async (file) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete("http://localhost:5000/api/bin/move", {
+      await axios.delete("${API_URL}/api/bin/move", {
         headers: { Authorization: `Bearer ${token}` },
         data: { fileId: file._id },
       });
@@ -97,7 +101,7 @@ const Categories = () => {
       const fileKey = fileUrl.split('.com/')[1]; // Extract key after S3 bucket domain
       const token = localStorage.getItem("token");
   
-      const response = await axios.get(`http://localhost:5000/api/files/download/${encodeURIComponent(fileKey)}`, {
+      const response = await axios.get(`${API_URL}/api/files/download/${encodeURIComponent(fileKey)}`, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob", // Ensure correct file format
       });
@@ -122,7 +126,7 @@ const Categories = () => {
       if (!email) return;
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:5000/api/files/share",
+        "${API_URL}/api/files/share",
         { fileId: file._id, recipientEmail: email },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -135,7 +139,7 @@ const Categories = () => {
   const handleFavorite = async (file) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:5000/api/files/favourite", { fileId: file._id }, {
+      await axios.post("${API_URL}/api/files/favourite", { fileId: file._id }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("File added to favorites!");

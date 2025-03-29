@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../styles/FileUpload.css";
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
 const FileUpload = ({ onUploadSuccess }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -29,7 +31,7 @@ const FileUpload = ({ onUploadSuccess }) => {
       setUploadMessage(null); // Clear previous success message
 
       const token = localStorage.getItem("token");
-      const response = await axios.post("http://localhost:5000/api/files/upload", formData, {
+      const response = await axios.post("${API_URL}/api/files/upload", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

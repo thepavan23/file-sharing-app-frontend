@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Profile.css";
 
+
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
+
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -10,7 +14,7 @@ const Profile = () => {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/api/auth/user", {
+        const response = await axios.get("${API_URL}/api/auth/user", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);

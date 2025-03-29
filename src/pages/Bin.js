@@ -3,6 +3,8 @@ import axios from "axios";
 import FileCard from "../components/FileCard";
 import "../styles/Bin.css";
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
 const Bin = () => {
   const [deletedFiles, setDeletedFiles] = useState([]);
   const [error, setError] = useState(null);
@@ -11,7 +13,7 @@ const Bin = () => {
     const fetchDeletedFiles = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/api/bin", {
+        const response = await axios.get("${API_URL}/api/bin", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setDeletedFiles(response.data);
@@ -27,7 +29,7 @@ const Bin = () => {
     try {
         const token = localStorage.getItem("token");
         await axios.post(
-            "http://localhost:5000/api/bin/restore", // ✅ Correct URL
+            "${API_URL}/api/bin/restore", // ✅ Correct URL
             { fileId }, // ✅ Send fileId in the request body
             { headers: { Authorization: `Bearer ${token}` } } // ✅ Correct headers
         );

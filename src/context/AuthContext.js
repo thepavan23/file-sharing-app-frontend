@@ -3,6 +3,9 @@ import axios from "axios";
 
 export const AuthContext = createContext();
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          const response = await axios.get("http://localhost:5000/api/auth/user", {
+          const response = await axios.get("${API_URL}/api/auth/user", {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUser(response.data);
@@ -30,13 +33,13 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       console.log("Sending login request...");
-      const response = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      const response = await axios.post("${API_URL}/api/auth/login", { email, password });
       console.log("Login successful, response:", response.data);
   
       localStorage.setItem("token", response.data.token);
   
       // Fetch user profile after login
-      const userResponse = await axios.get("http://localhost:5000/api/auth/user", {
+      const userResponse = await axios.get("${API_URL}/api/auth/user", {
         headers: { Authorization: `Bearer ${response.data.token}` },
       });
   
@@ -52,7 +55,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (name, email, password) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/register", { name, email, password });
+      const response = await axios.post("${API_URL}/api/auth/register", { name, email, password });
       localStorage.setItem("token", response.data.token);
       setUser(response.data.user);
       return response.data;

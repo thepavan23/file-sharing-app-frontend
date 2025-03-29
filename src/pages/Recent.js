@@ -3,6 +3,10 @@ import axios from "axios";
 import FileCard from "../components/FileCard";
 import "../styles/Recent.css";
 
+
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
+
 const Recent = () => {
   const [recentFiles, setRecentFiles] = useState([]); // ✅ Default as empty array
   const [error, setError] = useState(null);
@@ -11,7 +15,7 @@ const Recent = () => {
     const fetchRecentFiles = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/api/files/recent", {
+        const response = await axios.get("${API_URL}/api/files/recent", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -36,7 +40,7 @@ const Recent = () => {
   const handleDelete = async (file) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete("http://localhost:5000/api/bin/move", {
+      await axios.delete("${API_URL}/api/bin/move", {
         headers: { Authorization: `Bearer ${token}` },
         data: { fileId: file._id },
       });
@@ -64,7 +68,7 @@ const Recent = () => {
       const fileKey = fileUrl.split('.com/')[1]; // Extract key after S3 bucket domain
       const token = localStorage.getItem("token");
   
-      const response = await axios.get(`http://localhost:5000/api/files/download/${encodeURIComponent(fileKey)}`, {
+      const response = await axios.get(`${API_URL}/api/files/download/${encodeURIComponent(fileKey)}`, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob", // Ensure correct file format
       });
@@ -89,7 +93,7 @@ const Recent = () => {
       if (!email) return;
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:5000/api/files/share",
+        "${API_URL}/api/files/share",
         { fileId: file._id, recipientEmail: email },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -102,7 +106,7 @@ const Recent = () => {
   const handleFavorite = async (file) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:5000/api/files/favourite", { fileId: file._id }, {
+      await axios.post("${API_URL}/api/files/favourite", { fileId: file._id }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("File added to favorites!");

@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/FileDetail.css";
 
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
+
 const FileDetail = () => {
   const { fileId } = useParams();
   const [file, setFile] = useState(null);
@@ -14,7 +17,7 @@ const FileDetail = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:5000/api/files/${fileId}`,
+          `${API_URL}/api/files/${fileId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
