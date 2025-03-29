@@ -103,6 +103,7 @@ const Uploaded = () => {
   return (
     <div className="uploaded-container">
       <h2>Uploaded Files</h2>
+      {error && <p className="error-message">{error}</p>}
       {uploadedFiles.length === 0 ? (
         <p>No uploaded files found.</p>
       ) : (

@@ -58,7 +58,6 @@ const FileUpload = ({ onUploadSuccess }) => {
       <button onClick={handleUpload} disabled={uploading}>
         {uploading ? "Uploading..." : "Upload"}
       </button>
-      {error && <p className="error-message">{error}</p>}
       {uploadMessage && <p className="success-message">{uploadMessage}</p>}
     </div>
   );
