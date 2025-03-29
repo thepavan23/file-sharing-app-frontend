@@ -1,0 +1,22 @@
+.favorites-container {
+    padding: 20px;
+  }
+  
+  .favorite-file {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: white;
+  }
+  
+  .remove-favorite {
+    background: #dc3545;
+    color: white;
+    padding: 5px;
+    border: none;
+  }
+  
+  .remove-favorite:hover {
+    background: #c82333;
+  }
+  

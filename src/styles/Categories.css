@@ -1,0 +1,13 @@
+.categories-container {
+    padding: 20px;
+  }
+  
+  .category-card {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
