@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Auth.css";
 
-
 const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 const Signup = () => {
@@ -16,13 +15,14 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_URL}/api/auth/register`, {
+      const response = await axios.post(`${API_URL}/api/auth/register`, {
         name,
         email,
         password,
       });
 
-      navigate("/login");
+      alert(response.data.message); // Show success message
+      navigate(`/verify-email`); // Redirect to verification page
     } catch (err) {
       setError("Signup failed. Try again.");
     }

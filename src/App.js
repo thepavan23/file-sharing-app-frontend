@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "r
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import VerifyEmail from "./pages/VerifyEmail";
 import Signup from "./pages/Signup";
 import Favorites from "./pages/Favorites";
 import Uploaded from "./pages/Uploaded";
@@ -34,6 +35,7 @@ const Layout = () => {
       <div className="main-content">
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<PrivateRoute element={<Home />} />} />
           <Route path="/favorites" element={<PrivateRoute element={<Favorites />} />} />
