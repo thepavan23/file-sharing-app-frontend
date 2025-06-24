@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import axios from "axios";
 import "../styles/Auth.css";
 
 const Login = () => {
@@ -32,29 +31,34 @@ const Login = () => {
   
 
   return (
-    <div className="auth-container">
-      <h2>Login</h2>
+    <div className="form-box">
+      
       {error && <p className="error">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
+      <form className="form" onSubmit={handleSubmit}>
+        <span className="title">Login</span>
+        <div class="form-container">
+        <input class="input"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <input
+        <input class="input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        </div>
         <button type="submit">Login</button>
       </form>
+      <div class="form-section">
       <p>
         Don't have an account? <a href="/signup">Sign up</a>
       </p>
+      </div>
     </div>
   );
 };

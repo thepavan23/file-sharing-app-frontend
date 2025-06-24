@@ -27,7 +27,7 @@ const PrivateRoute = ({ element }) => {
 
 const Layout = () => {
   const location = useLocation();
-  const hideNavbarPages = ["/login", "/signup"]; // Pages where navbar should be hidden
+  const hideNavbarPages = ["/login", "/signup", "/verify-email"]; // Pages where navbar should be hidden
 
   return (
     <>

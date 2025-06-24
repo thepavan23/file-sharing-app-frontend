@@ -28,24 +28,29 @@ const VerifyEmail = () => {
     };
 
     return (
-        <div className="auth-container">
-            <h2>Verify Email</h2>
+        <div className="form-box">
+            
             {message && <p className="error">{message}</p>}
-            <input
+            <form class="form">
+            <span className="title">Verify Email</span>
+            <div class="form-container">
+            <input className="input"
                 type="email"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
             />
-            <input
+            <input className="input"
                 type="text"
                 placeholder="Enter verification code"
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 required
             />
+            </div>
             <button onClick={handleVerify}>Verify</button>
+        </form>
         </div>
     );
 };
