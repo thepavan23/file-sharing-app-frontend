@@ -10,7 +10,8 @@ const VerifyEmail = () => {
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
-    const handleVerify = async () => {
+    const handleVerify = async (e) => {
+        e.preventDefault();
         try {
             console.log("Sending verification request:", { email, code });
 
@@ -31,9 +32,9 @@ const VerifyEmail = () => {
         <div className="form-box">
             
             {message && <p className="error">{message}</p>}
-            <form class="form">
+            <form className="form">
             <span className="title">Verify Email</span>
-            <div class="form-container">
+            <div className="form-container">
             <input className="input"
                 type="email"
                 placeholder="Enter your email"

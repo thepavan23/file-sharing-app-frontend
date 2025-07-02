@@ -36,15 +36,15 @@ const Login = () => {
       {error && <p className="error">{error}</p>}
       <form className="form" onSubmit={handleSubmit}>
         <span className="title">Login</span>
-        <div class="form-container">
-        <input class="input"
+        <div className="form-container">
+        <input className="input"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <input class="input"
+        <input className="input"
           type="password"
           placeholder="Password"
           value={password}
@@ -54,7 +54,7 @@ const Login = () => {
         </div>
         <button type="submit">Login</button>
       </form>
-      <div class="form-section">
+      <div className="form-section">
       <p>
         Don't have an account? <a href="/signup">Sign up</a>
       </p>

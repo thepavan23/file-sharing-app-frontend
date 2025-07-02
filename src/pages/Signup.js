@@ -33,7 +33,7 @@ const Signup = () => {
       
       {error && <p className="error">{error}</p>}
       <form className="form" onSubmit={handleSubmit}>
-        <span class="title">Sign Up</span>
+        <span className="title">Sign Up</span>
         <div className="form-container">
         <input className="input"
           type="text"
@@ -59,7 +59,7 @@ const Signup = () => {
         </div>
         <button type="submit">Sign Up</button>
       </form>
-      <div class="form-section">
+      <div className="form-section">
       <p>
         Already have an account? <a href="/login">Login</a>
       </p>
